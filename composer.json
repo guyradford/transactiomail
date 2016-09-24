@@ -1,0 +1,28 @@
+{
+    "name": "guyradford/transactiomail",
+    "description": "Transaction Email.",
+    "keywords": [
+        "email", "transactional"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Guy Radford",
+            "email": "guyr@crazylime.co.uk"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "beberlei/assert": "^2.6"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^4.8",
+        "mockery/mockery": "^0.9.5",
+        "fzaninotto/faker": "^1.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "GuyRadford\\TransactioMail\\": "src/"
+        }
+    }
+}
