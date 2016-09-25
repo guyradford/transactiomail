@@ -11,59 +11,71 @@ namespace GuyRadford\TransactioMail;
 
 use Assert\Assertion;
 
-class EmailTemplatedMessage
+final class EmailTemplatedMessage extends BaseEmailMessage
 {
 
-    protected $toEmailAddresses = [];
-    protected $ccEmailAddresses = [];
-    protected $bccEmailAddresses = [];
-
-    protected $fromEmailAddress;
-    protected $replyToEmailAddress;
-
+    /**
+     * @var string
+     */
     protected $template;
+
+    /**
+     * @var array
+     */
     protected $mergeFields = [];
 
-    protected $subject;
-
 
     /**
-     * Add a To email address to the list.
-     * 
-     * @param string $emailAddress
-     * @param string $name
+     * @param string $template
+     * @return $this
      */
-    public function addToEmailAddress($emailAddress, $name=''){
-        Assertion::email($emailAddress);
-        $this->toEmailAddresses[$emailAddress] = $name;
+    public function setTemplate($template)
+    {
+        $this->template = $template;
+        return $this;
+
     }
 
     /**
-     * Add a cc email address to the list.
-     * 
-     * @param string $emailAddress
-     * @param string $name
+     * @param string $field
+     * @param string $value
+     * @return $this
      */
-    public function addCcEmailAddress($emailAddress, $name=''){
-        Assertion::email($emailAddress);
-        $this->ccEmailAddresses[$emailAddress] = $name;
+    public function addMergeField($field, $value)
+    {
+        Assertion::string($field);
+        Assertion::string($value);
+
+        $this->mergeFields[$field] = $value;
+        return $this;
+
+    }
+
+    /**
+     * @param array $mergeFields
+     * @return $this
+     */
+    public function addMergeFields($mergeFields)
+    {
+        foreach ($mergeFields as $field => $value)
+            $this->addMergeField($field, $value);
+        return $this;
     }
     
     /**
-     * Add a bcc email address to the list.
-     * 
-     * @param string $emailAddress
-     * @param string $name
+     * @return string
      */
-    public function addBccEmailAddress($emailAddress, $name=''){
-        Assertion::email($emailAddress);
-        $this->bccEmailAddresses[$emailAddress] = $name;
+    public function getTemplate()
+    {
+        return $this->template;
     }
-    
-    public function setReplyToEmailAddress($emailAddress, $name=''){
-        Assertion::email($emailAddress);
-        $this->replyToEmailAddress[$emailAddress] = $name;
-        
+
+    /**
+     * @return array
+     */
+    public function getMergeFields()
+    {
+        return $this->mergeFields;
     }
     
 }

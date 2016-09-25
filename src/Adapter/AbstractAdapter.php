@@ -11,7 +11,7 @@ namespace GuyRadford\TransactioMail\Adapter;
 
 use GuyRadford\TransactioMail\AdapterInterface;
 
-class AbstractAdapter implements AdapterInterface
+abstract class AbstractAdapter implements AdapterInterface
 {
-
+    
 }

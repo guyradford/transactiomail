@@ -2,16 +2,15 @@
 /**
  * Created by PhpStorm.
  * User: GuyRadford
- * Date: 24/09/2016
- * Time: 19:44
+ * Date: 25/09/2016
+ * Time: 21:22
  */
 
 namespace GuyRadford\TransactioMail;
 
 
-interface AdapterInterface
+interface TransactioMailInterface
 {
-
     /**
      * @param EmailTemplatedMessage $emailMessage
      * @return Result
