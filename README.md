@@ -1,6 +1,7 @@
 # TransactioMail
 Transactional Email Service
 
+[![Build Status](https://travis-ci.org/guyradford/transactiomail.svg?branch=master)](https://travis-ci.org/guyradford/transactiomail)
 
 ##Feature Table
 
