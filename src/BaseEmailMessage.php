@@ -8,7 +8,6 @@
 
 namespace GuyRadford\TransactioMail;
 
-
 use Assert\Assertion;
 use GuyRadford\TransactioMail\ValueObject\EmailAddress;
 
@@ -44,7 +43,7 @@ abstract class BaseEmailMessage
      * @var array
      */
     protected $headers = [];
-    
+
     /**
      * @var string
      */
@@ -58,7 +57,8 @@ abstract class BaseEmailMessage
      * @param string $name
      * @return $this
      */
-    public function addToEmailAddress($emailAddress, $name=''){
+    public function addToEmailAddress($emailAddress, $name='')
+    {
         Assertion::email($emailAddress);
         $this->toEmailAddresses[$emailAddress] = EmailAddress::create($emailAddress, $name);
         return $this;
@@ -71,11 +71,11 @@ abstract class BaseEmailMessage
      * @param string $name
      * @return $this
      */
-    public function addCcEmailAddress($emailAddress, $name=''){
+    public function addCcEmailAddress($emailAddress, $name='')
+    {
         Assertion::email($emailAddress);
         $this->ccEmailAddresses[$emailAddress] = EmailAddress::create($emailAddress, $name);
         return $this;
-
     }
 
     /**
@@ -85,7 +85,8 @@ abstract class BaseEmailMessage
      * @param string $name
      * @return $this
      */
-    public function addBccEmailAddress($emailAddress, $name=''){
+    public function addBccEmailAddress($emailAddress, $name='')
+    {
         Assertion::email($emailAddress);
         $this->bccEmailAddresses[$emailAddress] = EmailAddress::create($emailAddress, $name);
         return $this;
@@ -98,10 +99,11 @@ abstract class BaseEmailMessage
      * @param string $value
      * @return $this
      */
-    public function addHeader($header, $value){
+    public function addHeader($header, $value)
+    {
         Assertion::string($header);
         Assertion::string($value);
-        
+
         $this->headers[$header] = $value;
         return $this;
     }
@@ -113,11 +115,11 @@ abstract class BaseEmailMessage
      * @param string $name
      * @return $this
      */
-    public function setReplyToEmailAddress($emailAddress, $name=''){
+    public function setReplyToEmailAddress($emailAddress, $name='')
+    {
         Assertion::email($emailAddress);
         $this->replyToEmailAddress = EmailAddress::create($emailAddress, $name);
         return $this;
-
     }
 
     /**
@@ -128,7 +130,8 @@ abstract class BaseEmailMessage
      * @return $this
      */
 
-    public function setFromEmailAddress($emailAddress, $name=''){
+    public function setFromEmailAddress($emailAddress, $name='')
+    {
         Assertion::email($emailAddress);
         $this->replyToEmailAddress = EmailAddress::create($emailAddress, $name);
         return $this;
@@ -143,7 +146,7 @@ abstract class BaseEmailMessage
         $this->subject = $subject;
         return $this;
     }
-    
+
     /**
      * @return ValueObject\EmailAddress[]
      */
@@ -183,7 +186,7 @@ abstract class BaseEmailMessage
     {
         return $this->replyToEmailAddress;
     }
-    
+
     /**
      * @return string
      */
@@ -199,7 +202,4 @@ abstract class BaseEmailMessage
     {
         return $this->headers;
     }
-    
-    
-    
 }

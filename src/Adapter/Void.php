@@ -8,7 +8,6 @@
 
 namespace GuyRadford\TransactioMail\Adapter;
 
-
 use GuyRadford\TransactioMail\EmailTemplatedMessage;
 use GuyRadford\TransactioMail\Result;
 

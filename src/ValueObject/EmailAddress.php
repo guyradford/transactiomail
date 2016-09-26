@@ -8,7 +8,6 @@
 
 namespace GuyRadford\TransactioMail\ValueObject;
 
-
 use Assert\Assertion;
 
 class EmailAddress
@@ -31,7 +30,6 @@ class EmailAddress
      */
     public function __construct($emailAddress, $name)
     {
-
         $this->emailAddress = $emailAddress;
         $this->name = $name;
     }
@@ -41,25 +39,26 @@ class EmailAddress
      * @param string $name
      * @return EmailAddress
      */
-    static public function create($emailAddress, $name){
+    public static function create($emailAddress, $name)
+    {
         Assertion::email($emailAddress);
         Assertion::string($name);
 
         return new self($emailAddress, $name);
-
     }
 
     /**
      * @param string $email
      * @return EmailAddress
      */
-    static public function fromString($email){
+    public static function fromString($email)
+    {
         $emailParts = explode('<', $email);
 
-        if (isset($emailParts[1])){
+        if (isset($emailParts[1])) {
             $name = trim($emailParts[0]);
-            $emailAddress = trim(str_replace('>','',$emailParts[1]));
-        }else{
+            $emailAddress = trim(str_replace('>', '', $emailParts[1]));
+        } else {
             $name = '';
             $emailAddress = trim($emailParts[0]);
         }
@@ -69,26 +68,28 @@ class EmailAddress
     /**
      * @return string
      */
-    public function toString(){
-        if (strlen($this->name)>0)
+    public function toString()
+    {
+        if (strlen($this->name)>0) {
             return "{$this->name} <{$this->emailAddress}>";
-        
+        }
+
         return $this->emailAddress;
     }
 
     /**
      * @return string
      */
-    public function getEmailAddress(){
+    public function getEmailAddress()
+    {
         return $this->emailAddress;
     }
 
     /**
      * @return string
      */
-    public function getName(){
+    public function getName()
+    {
         return $this->name;
     }
-
-
 }

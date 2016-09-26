@@ -8,14 +8,13 @@
 
 namespace GuyRadford\TransactioMail\Adapter;
 
-
 use GuyRadford\TransactioMail\EmailTemplatedMessage;
 use GuyRadford\TransactioMail\Result;
 use GuyRadford\TransactioMail\ValueObject\EmailAddress;
 
 class Mandrill extends AbstractAdapter
 {
-    
+
     /**
      * @var \Mandrill
      */
@@ -56,7 +55,7 @@ class Mandrill extends AbstractAdapter
         $this->ipPool = $ipPool;
         $this->sendAt = $sendAt;
 
-        $this->defaultMessageConfig = array_merge(array(
+        $this->defaultMessageConfig = array_merge([
             'important' => false,
             'track_opens' => null,
             'track_clicks' => null,
@@ -75,7 +74,7 @@ class Mandrill extends AbstractAdapter
             'recipient_metadata' => [],
             'attachments' => [],
             'images' => []
-        ), $config);
+        ], $config);
     }
 
 
@@ -85,7 +84,6 @@ class Mandrill extends AbstractAdapter
      */
     public function sendTemplateEmail(EmailTemplatedMessage $emailMessage)
     {
-
         $mergeFields = $this->getMergeFields($emailMessage);
         $message = $this->getMessageData($emailMessage);
         $result = $this->client->messages->sendTemplate(
@@ -117,19 +115,18 @@ class Mandrill extends AbstractAdapter
     {
         return array_merge(
             $this->defaultMessageConfig,
-            array(
+            [
                 'subject' => $emailMessage->getSubject(),
                 'from_email' => $emailMessage->getFromEmailAddress()->getEmailAddress(),
                 'from_name' => $emailMessage->getFromEmailAddress()->getName(),
                 'to' => $this->builtToArray($emailMessage),
                 'headers' => $this->getMandrillHeadersAsArray($emailMessage),
-            )
+            ]
         );
     }
 
     protected function builtToArray(EmailTemplatedMessage $emailMessage)
     {
-
         $to = array_merge(
             $this->buildToArrayForType('to', $emailMessage->getToEmailAddresses()),
             $this->buildToArrayForType('cc', $emailMessage->getCcEmailAddresses()),
@@ -145,7 +142,6 @@ class Mandrill extends AbstractAdapter
 
         /** @var EmailAddress $emailAddress */
         array_walk($emailAddressList, function ($emailAddress) use ($type, $to) {
-
             $to[] = [
                 'email' => $emailAddress->getEmailAddress(),
                 'name' => $emailAddress->getName(),
@@ -158,7 +154,6 @@ class Mandrill extends AbstractAdapter
 
     protected function getMandrillHeadersAsArray(EmailTemplatedMessage $emailMessage)
     {
-
         $headers = [];
 
         if ($emailMessage->getReplyToEmailAddress()) {

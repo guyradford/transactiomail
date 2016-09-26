@@ -8,13 +8,10 @@
 
 namespace Test\TransactioMail\ValueObject;
 
-
 use GuyRadford\TransactioMail\ValueObject\EmailAddress;
 
 class EmailAddressTest extends \PHPUnit_Framework_TestCase
 {
-
-
     public function create_data_provider()
     {
         return [
@@ -73,7 +70,7 @@ class EmailAddressTest extends \PHPUnit_Framework_TestCase
         EmailAddress::create($email, $name);
     }
 
-   
+
     /**
      * @test
      */
@@ -129,8 +126,4 @@ class EmailAddressTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals($stringEmailAddress, $emailAddress->toString());
     }
-
-
-
-
 }

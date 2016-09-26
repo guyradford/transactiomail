@@ -8,7 +8,6 @@
 
 namespace GuyRadford\TransactioMail\Adapter;
 
-
 use GuyRadford\TransactioMail\AdapterInterface;
 use GuyRadford\TransactioMail\BaseEmailMessage;
 use GuyRadford\TransactioMail\Result;
@@ -34,9 +33,10 @@ abstract class AbstractAdapter implements AdapterInterface
      * @param BaseEmailMessage $emailMessage
      * @return array
      */
-    protected function getHeadersAsArray(BaseEmailMessage $emailMessage){
+    protected function getHeadersAsArray(BaseEmailMessage $emailMessage)
+    {
         $headers = [];
-        
+
         return $emailMessage->getHeaders();
 
 //        array_walk($emailMessage->getHeaders(), function ($value, $key) use($headers){
@@ -58,10 +58,11 @@ abstract class AbstractAdapter implements AdapterInterface
         $emails = [];
 
         array_walk($emailAddressList, function (EmailAddress $email) use (&$emails, $emailOnly) {
-            if($emailOnly)
+            if ($emailOnly) {
                 $emails[] = $email->getEmailAddress();
-            else
+            } else {
                 $emails[] = $email->toString();
+            }
         });
 
         return implode($separator, $emails);

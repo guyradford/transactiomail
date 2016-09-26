@@ -8,7 +8,6 @@
 
 namespace GuyRadford\TransactioMail;
 
-
 class TransactioMail implements TransactioMailInterface
 {
     /**

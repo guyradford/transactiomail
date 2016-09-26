@@ -8,7 +8,6 @@
 
 namespace GuyRadford\TransactioMail;
 
-
 interface AdapterInterface
 {
 

@@ -8,7 +8,6 @@
 
 namespace GuyRadford\TransactioMail;
 
-
 use Assert\Assertion;
 
 final class EmailTemplatedMessage extends BaseEmailMessage
@@ -33,7 +32,6 @@ final class EmailTemplatedMessage extends BaseEmailMessage
     {
         $this->template = $template;
         return $this;
-
     }
 
     /**
@@ -48,7 +46,6 @@ final class EmailTemplatedMessage extends BaseEmailMessage
 
         $this->mergeFields[$field] = $value;
         return $this;
-
     }
 
     /**
@@ -57,11 +54,12 @@ final class EmailTemplatedMessage extends BaseEmailMessage
      */
     public function addMergeFields($mergeFields)
     {
-        foreach ($mergeFields as $field => $value)
+        foreach ($mergeFields as $field => $value) {
             $this->addMergeField($field, $value);
+        }
         return $this;
     }
-    
+
     /**
      * @return string
      */
@@ -77,5 +75,4 @@ final class EmailTemplatedMessage extends BaseEmailMessage
     {
         return $this->mergeFields;
     }
-    
 }

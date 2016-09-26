@@ -8,14 +8,12 @@
 
 namespace Test\TransactioMail\Adapter;
 
-
 use GuyRadford\TransactioMail\EmailTemplatedMessage;
 use GuyRadford\TransactioMail\ValueObject\EmailAddress;
 use Test\TransactioMail\TestTraits;
 
 class AbstractAdapterTest extends \PHPUnit_Framework_TestCase
 {
-
     use TestTraits;
 
     /**
@@ -23,9 +21,6 @@ class AbstractAdapterTest extends \PHPUnit_Framework_TestCase
      */
     public function test_getHeadersAsArray()
     {
-
-        
-        
         $emailMessage = (new EmailTemplatedMessage())
             ->addHeader('header1', 'value1')
             ->addHeader('header2', 'value2');
@@ -73,8 +68,6 @@ class AbstractAdapterTest extends \PHPUnit_Framework_TestCase
                 'test <test@example.com>|test1 <test1@example.com>'
             ]
         ];
-
-
     }
 
     /**
@@ -83,7 +76,6 @@ class AbstractAdapterTest extends \PHPUnit_Framework_TestCase
      */
     public function test_getListOfEmails($emailAddressList, $separator, $emailOnly, $expacted)
     {
-
         $adapter = new MockAbstractAdapter();
         $result = $this->invokeMethod($adapter, 'getListOfEmails', [$emailAddressList, $separator, $emailOnly]);
 

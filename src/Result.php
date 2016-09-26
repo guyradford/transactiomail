@@ -8,7 +8,6 @@
 
 namespace GuyRadford\TransactioMail;
 
-
 use Assert\Assertion;
 
 class Result
@@ -35,7 +34,8 @@ class Result
      * @param string $messageId
      * @param string $message
      */
-    public function __construct($success, $messageId, $message){
+    public function __construct($success, $messageId, $message)
+    {
         $this->success = $success;
         $this->messageId = $messageId;
         $this->message = $message;
@@ -48,13 +48,13 @@ class Result
      * @param string $message
      * @return Result
      */
-    static public function create($success, $messageId, $message){
+    public static function create($success, $messageId, $message)
+    {
         Assertion::boolean($success);
         Assertion::string($messageId);
         Assertion::string($message);
-        
+
         return new self($success, $messageId, $message);
-        
     }
 
     /**
@@ -80,8 +80,4 @@ class Result
     {
         return $this->message;
     }
-
-    
-    
-
 }

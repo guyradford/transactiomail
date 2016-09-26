@@ -8,15 +8,14 @@
 
 namespace GuyRadford\TransactioMail\Adapter;
 
-
 use GuyRadford\TransactioMail\EmailTemplatedMessage;
 use GuyRadford\TransactioMail\Result;
 use Sendinblue\Mailin;
 
 class SendInBlue extends AbstractAdapter
 {
-    
-    
+
+
     /**
      * @var Mailin
      */
@@ -34,11 +33,9 @@ class SendInBlue extends AbstractAdapter
      */
     public function sendTemplateEmail(EmailTemplatedMessage $emailMessage)
     {
-
         $message = $this->getMessageData($emailMessage);
         $result = $this->client->send_transactional_template($message);
         return $this->builtResult($result);
-
     }
 
     /**
@@ -47,8 +44,7 @@ class SendInBlue extends AbstractAdapter
      */
     protected function getMessageData(EmailTemplatedMessage $emailTemplatedMessage)
     {
-
-        return array(
+        return [
             "id" => $emailTemplatedMessage->getTemplate(),
             "to" => $this->getListOfEmails($emailTemplatedMessage->getToEmailAddresses(), '|'),
             "cc" => $this->getListOfEmails($emailTemplatedMessage->getCcEmailAddresses(), '|'),
@@ -59,25 +55,26 @@ class SendInBlue extends AbstractAdapter
             ),
 //			"attachment_url" => "",
 //			"attachment" => array("myfilename.pdf" => "your_pdf_files_base64_encoded_chunk_data"),
-			"headers" => $this->getHeadersAsArray($emailTemplatedMessage),
-        );
+            "headers" => $this->getHeadersAsArray($emailTemplatedMessage),
+        ];
     }
 
-    
-    protected function getMergeFields($mergeFields, $subject){
+
+    protected function getMergeFields($mergeFields, $subject)
+    {
         $attr = [];
-        
+
         $attr['SUBJECT'] = $subject;
-        
-        array_walk($mergeFields, function ($value, $key) use($attr){
+
+        array_walk($mergeFields, function ($value, $key) use ($attr) {
             $attr[strtoupper($key)] = $value;
         });
-        
     }
 
 
 
-    protected function builtResult($result){
+    protected function builtResult($result)
+    {
         return Result::create(
             ($result['code'] == 'success'?true:false),
             $result['data']['message-id'],
