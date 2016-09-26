@@ -2,9 +2,18 @@
 Transactional Email Service
 
 
+##Feature Table
+
+Adapter Void    SendInBlue  Mandrill
+Feature
+XX
+YY
+ZZ
+
+
 ##SendInBlue
 
-
+https://apidocs.sendinblue.com/tutorial-sending-transactional-email/
 
 ```
 $mailin = new Mailin("https://api.sendinblue.com/v2.0","your access key");
@@ -32,3 +41,14 @@ Notes
 
 1) Subject is passed to SendInBlue as an attribute called 'SUBJECT'. A merge field with the same name will overwrite this.
 2) the case of the field name does not matter but will be changed to UPPER before being sent to SendInBlue.
+
+
+##Mandril
+
+https://mandrillapp.com/api/docs/messages.php.html
+
+```
+$mandrill = new Mandrill('YOUR_API_KEY');
+$adapter = new SendInBlue($mandrill);
+$transatioMail = new TransactioMail($adapter);
+

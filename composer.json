@@ -24,7 +24,8 @@
     },
     "autoload": {
         "psr-4": {
-            "GuyRadford\\TransactioMail\\": "src/"
+            "GuyRadford\\TransactioMail\\": "src/",
+            "Test\\TransactioMail\\": "tests/"
         }
     }
 }

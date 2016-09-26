@@ -11,11 +11,12 @@ namespace GuyRadford\TransactioMail\Adapter;
 
 use GuyRadford\TransactioMail\EmailTemplatedMessage;
 use GuyRadford\TransactioMail\Result;
-use GuyRadford\TransactioMail\ValueObject\EmailAddress;
 use Sendinblue\Mailin;
 
 class SendInBlue extends AbstractAdapter
 {
+    
+    
     /**
      * @var Mailin
      */
@@ -34,41 +35,34 @@ class SendInBlue extends AbstractAdapter
     public function sendTemplateEmail(EmailTemplatedMessage $emailMessage)
     {
 
-        $data = $this->buildData($emailMessage);
-        $result = $this->client->send_transactional_template($data);
+        $message = $this->getMessageData($emailMessage);
+        $result = $this->client->send_transactional_template($message);
         return $this->builtResult($result);
 
     }
 
-    protected function buildData(EmailTemplatedMessage $emailTemplatedMessage)
+    /**
+     * @param EmailTemplatedMessage $emailTemplatedMessage
+     * @return array
+     */
+    protected function getMessageData(EmailTemplatedMessage $emailTemplatedMessage)
     {
 
-        $data = array(
+        return array(
             "id" => $emailTemplatedMessage->getTemplate(),
-            "to" => $this->getListOfEmails($emailTemplatedMessage->getToEmailAddresses()),
-            "cc" => $this->getListOfEmails($emailTemplatedMessage->getCcEmailAddresses()),
-            "bcc" => $this->getListOfEmails($emailTemplatedMessage->getBccEmailAddresses()),
+            "to" => $this->getListOfEmails($emailTemplatedMessage->getToEmailAddresses(), '|'),
+            "cc" => $this->getListOfEmails($emailTemplatedMessage->getCcEmailAddresses(), '|'),
+            "bcc" => $this->getListOfEmails($emailTemplatedMessage->getBccEmailAddresses(), '|'),
             "attr" => $this->getMergeFields(
                 $emailTemplatedMessage->getMergeFields(),
                 $emailTemplatedMessage->getSubject()
             ),
 //			"attachment_url" => "",
 //			"attachment" => array("myfilename.pdf" => "your_pdf_files_base64_encoded_chunk_data"),
-			"headers" => $this->getHeaders($emailTemplatedMessage->getMergeFields()),
+			"headers" => $this->getHeadersAsArray($emailTemplatedMessage),
         );
-        return $data;
     }
 
-    protected function getListOfEmails($emailAddressList)
-    {
-        $emails = [];
-
-        array_walk($emailAddressList, function (EmailAddress $email) use ($emails) {
-            $emails[] = $email->getEmailAddress();
-        });
-
-        return implode('|', $emails);
-    }
     
     protected function getMergeFields($mergeFields, $subject){
         $attr = [];
@@ -80,13 +74,7 @@ class SendInBlue extends AbstractAdapter
         });
         
     }
-    protected function getHeaders($headers){
-        $response = [];
 
-        array_walk($headers, function ($value, $key) use($response){
-            $response[$key] = $value;
-        });
-    }
 
 
     protected function builtResult($result){

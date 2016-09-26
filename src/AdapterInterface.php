@@ -18,4 +18,10 @@ interface AdapterInterface
      */
     public function sendTemplateEmail(EmailTemplatedMessage $emailMessage);
 //    public function sendEmail(EmailTemplatedMessage $emailMessage);
+
+
+    /**
+     * @return Result
+     */
+    public function getLastResult();
 }

@@ -60,7 +60,7 @@ class Result
     /**
      * @return boolean
      */
-    public function isSuccess()
+    public function getSuccess()
     {
         return $this->success;
     }

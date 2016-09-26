@@ -2,26 +2,19 @@
 /**
  * Created by PhpStorm.
  * User: GuyRadford
- * Date: 24/09/2016
- * Time: 19:49
+ * Date: 26/09/2016
+ * Time: 20:38
  */
 
-namespace GuyRadford\TransactioMail\Adapter;
+namespace Test\TransactioMail\Adapter;
 
 
+use GuyRadford\TransactioMail\Adapter\AbstractAdapter;
 use GuyRadford\TransactioMail\EmailTemplatedMessage;
 use GuyRadford\TransactioMail\Result;
 
-class Void extends AbstractAdapter
+class MockAbstractAdapter extends AbstractAdapter
 {
-    /**
-     * Void constructor.
-     */
-    public function __construct()
-    {
-        $this->lastResult = Result::create(true, 'id-void', 'Message sent to void');
-    }
-
 
     /**
      * @param EmailTemplatedMessage $emailMessage
@@ -29,6 +22,6 @@ class Void extends AbstractAdapter
      */
     public function sendTemplateEmail(EmailTemplatedMessage $emailMessage)
     {
-        return true;
+        // TODO: Implement sendTemplateEmail() method.
     }
 }
