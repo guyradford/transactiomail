@@ -1,7 +1,7 @@
 # TransactioMail
 Transactional Email Service
 
-[![Build Status](https://travis-ci.org/guyradford/transactiomail.svg?branch=master)](https://travis-ci.org/guyradford/transactiomail)
+[![Build Status](https://travis-ci.org/guyradford/transactiomail.svg?branch=master)](https://travis-ci.org/guyradford/transactiomail) [![Coverage Status](https://coveralls.io/repos/github/guyradford/transactiomail/badge.svg?branch=master)](https://coveralls.io/github/guyradford/transactiomail?branch=master)
 
 ##Feature Table
 
