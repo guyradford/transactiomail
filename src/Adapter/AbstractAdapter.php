@@ -36,12 +36,14 @@ abstract class AbstractAdapter implements AdapterInterface
      */
     protected function getHeadersAsArray(BaseEmailMessage $emailMessage){
         $headers = [];
+        
+        return $emailMessage->getHeaders();
 
-        array_walk($emailMessage->getHeaders(), function ($value, $key) use(&$headers){
-            $headers[$key] = $value;
-        });
-
-        return $headers;
+//        array_walk($emailMessage->getHeaders(), function ($value, $key) use($headers){
+//            $headers[$key] = $value;
+//        });
+//
+//        return $headers;
     }
 
 
