@@ -53,3 +53,6 @@ $mandrill = new Mandrill('YOUR_API_KEY');
 $adapter = new SendInBlue($mandrill);
 $transatioMail = new TransactioMail($adapter);
 
+##Inspired By
+
+https://github.com/gabrielbull/omnimail
