@@ -5,11 +5,11 @@ Transactional Email Service
 
 ##Feature Table
 
-Adapter Void    SendInBlue  Mandrill
-Feature
-XX
-YY
-ZZ
+|          | Void | Mandrill | SendInBlue | AmazonSES |
+|---------:|:----:|:--------:|:----------:|:---------:|
+| Template |  Yes |    Yes   |      Yes   |     No    |
+|          |      |          |            |           |
+|          |      |          |            |           |
 
 
 ##SendInBlue
