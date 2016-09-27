@@ -5,11 +5,11 @@ Transactional Email Service
 
 ##Feature Table
 
-Adapter Void    SendInBlue  Mandrill
-Feature
-XX
-YY
-ZZ
+|          | Void | Mandrill | SendInBlue | AmazonSES |
+|---------:|:----:|:--------:|:----------:|:---------:|
+| Template |  Yes |    Yes   |      Yes   |     No    |
+|          |      |          |            |           |
+|          |      |          |            |           |
 
 
 ##SendInBlue
@@ -53,3 +53,6 @@ $mandrill = new Mandrill('YOUR_API_KEY');
 $adapter = new SendInBlue($mandrill);
 $transatioMail = new TransactioMail($adapter);
 
+##Inspired By
+
+https://github.com/gabrielbull/omnimail
