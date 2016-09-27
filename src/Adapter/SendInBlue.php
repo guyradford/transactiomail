@@ -53,6 +53,7 @@ class SendInBlue extends AbstractAdapter
                 $emailTemplatedMessage->getMergeFields(),
                 $emailTemplatedMessage->getSubject()
             ),
+            "replyto" => $emailTemplatedMessage->getReplyToEmailAddress()->getEmailAddress(),
 //			"attachment_url" => "",
 //			"attachment" => array("myfilename.pdf" => "your_pdf_files_base64_encoded_chunk_data"),
             "headers" => $this->getHeadersAsArray($emailTemplatedMessage),
@@ -60,15 +61,23 @@ class SendInBlue extends AbstractAdapter
     }
 
 
+    /**
+     * @param array $mergeFields
+     * @param string $subject
+     * @return array
+     */
     protected function getMergeFields($mergeFields, $subject)
     {
         $attr = [];
 
-        $attr['SUBJECT'] = $subject;
+        if ($subject)
+            $attr['SUBJECT'] = $subject;
 
-        array_walk($mergeFields, function ($value, $key) use ($attr) {
+        array_walk($mergeFields, function ($value, $key) use (&$attr) {
             $attr[strtoupper($key)] = $value;
         });
+        
+        return $attr;
     }
 
 
