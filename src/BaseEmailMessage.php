@@ -17,27 +17,27 @@ abstract class BaseEmailMessage
     /**
      * @var EmailAddress[]
      */
-    protected $toEmailAddresses = [];
+    protected $to = [];
 
     /**
      * @var EmailAddress[]
      */
-    protected $ccEmailAddresses = [];
+    protected $cc = [];
 
     /**
      * @var EmailAddress[]
      */
-    protected $bccEmailAddresses = [];
+    protected $bcc = [];
 
     /**
      * @var EmailAddress
      */
-    protected $fromEmailAddress;
+    protected $from;
 
     /**
      * @var EmailAddress
      */
-    protected $replyToEmailAddress;
+    protected $replyTo;
 
     /**
      * @var array
@@ -57,10 +57,10 @@ abstract class BaseEmailMessage
      * @param string $name
      * @return $this
      */
-    public function addToEmailAddress($emailAddress, $name='')
+    public function addTo($emailAddress, $name='')
     {
         Assertion::email($emailAddress);
-        $this->toEmailAddresses[$emailAddress] = EmailAddress::create($emailAddress, $name);
+        $this->to[$emailAddress] = EmailAddress::create($emailAddress, $name);
         return $this;
     }
 
@@ -71,7 +71,7 @@ abstract class BaseEmailMessage
      * @param string $name
      * @return $this
      */
-    public function addCcEmailAddress($emailAddress, $name='')
+    public function addCc($emailAddress, $name='')
     {
         Assertion::email($emailAddress);
         $this->ccEmailAddresses[$emailAddress] = EmailAddress::create($emailAddress, $name);
@@ -85,10 +85,10 @@ abstract class BaseEmailMessage
      * @param string $name
      * @return $this
      */
-    public function addBccEmailAddress($emailAddress, $name='')
+    public function addBcc($emailAddress, $name='')
     {
         Assertion::email($emailAddress);
-        $this->bccEmailAddresses[$emailAddress] = EmailAddress::create($emailAddress, $name);
+        $this->bcc[$emailAddress] = EmailAddress::create($emailAddress, $name);
         return $this;
     }
 
@@ -115,10 +115,10 @@ abstract class BaseEmailMessage
      * @param string $name
      * @return $this
      */
-    public function setReplyToEmailAddress($emailAddress, $name='')
+    public function setReplyTo($emailAddress, $name='')
     {
         Assertion::email($emailAddress);
-        $this->replyToEmailAddress = EmailAddress::create($emailAddress, $name);
+        $this->replyTo = EmailAddress::create($emailAddress, $name);
         return $this;
     }
 
@@ -130,10 +130,10 @@ abstract class BaseEmailMessage
      * @return $this
      */
 
-    public function setFromEmailAddress($emailAddress, $name='')
+    public function setFrom($emailAddress, $name='')
     {
         Assertion::email($emailAddress);
-        $this->replyToEmailAddress = EmailAddress::create($emailAddress, $name);
+        $this->replyTo = EmailAddress::create($emailAddress, $name);
         return $this;
     }
 
@@ -150,15 +150,15 @@ abstract class BaseEmailMessage
     /**
      * @return ValueObject\EmailAddress[]
      */
-    public function getToEmailAddresses()
+    public function getTos()
     {
-        return $this->toEmailAddresses;
+        return $this->to;
     }
 
     /**
      * @return ValueObject\EmailAddress[]
      */
-    public function getCcEmailAddresses()
+    public function getCcs()
     {
         return $this->ccEmailAddresses;
     }
@@ -166,25 +166,25 @@ abstract class BaseEmailMessage
     /**
      * @return ValueObject\EmailAddress[]
      */
-    public function getBccEmailAddresses()
+    public function getBccs()
     {
-        return $this->bccEmailAddresses;
+        return $this->bcc;
     }
 
     /**
      * @return EmailAddress
      */
-    public function getFromEmailAddress()
+    public function getFrom()
     {
-        return $this->fromEmailAddress;
+        return $this->from;
     }
 
     /**
      * @return EmailAddress
      */
-    public function getReplyToEmailAddress()
+    public function getReplyTo()
     {
-        return $this->replyToEmailAddress;
+        return $this->replyTo;
     }
 
     /**

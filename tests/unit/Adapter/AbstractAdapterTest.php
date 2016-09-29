@@ -1,0 +1,84 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: GuyRadford
+ * Date: 26/09/2016
+ * Time: 19:33
+ */
+
+namespace GuyRadford\Test\TransactioMail\Unit\Adapter;
+
+use GuyRadford\TransactioMail\EmailTemplatedMessage;
+use GuyRadford\TransactioMail\ValueObject\EmailAddress;
+use GuyRadford\Test\TransactioMail\Unit\TestTraits;
+
+class AbstractAdapterTest extends \PHPUnit_Framework_TestCase
+{
+    use TestTraits;
+
+    /**
+     * @test
+     */
+    public function test_getHeadersAsArray()
+    {
+        $emailMessage = (new EmailTemplatedMessage())
+            ->addHeader('header1', 'value1')
+            ->addHeader('header2', 'value2');
+
+        $expected = [
+            'header1' => 'value1',
+            'header2' => 'value2'
+        ];
+
+        $adapter = new MockAbstractAdapter();
+        $result = $this->invokeMethod($adapter, 'getHeadersAsArray', [$emailMessage]);
+
+        $this->assertEquals($expected, $result);
+    }
+
+
+    public function dataProvider_getListOfEmails()
+    {
+        return [
+            [
+                [
+                    EmailAddress::create('test@example.com', 'test'),
+                    EmailAddress::create('test1@example.com', 'test1')
+                ],
+                ',',
+                true,
+                'test@example.com,test1@example.com'
+            ],
+            [
+                [
+                    EmailAddress::create('test@example.com', 'test'),
+                    EmailAddress::create('test1@example.com', 'test1')
+                ],
+                ';',
+                true,
+                'test@example.com;test1@example.com'
+            ],
+            [
+                [
+                    EmailAddress::create('test@example.com', 'test'),
+                    EmailAddress::create('test1@example.com', 'test1')
+                ],
+                '|',
+                false,
+                'test <test@example.com>|test1 <test1@example.com>'
+            ]
+        ];
+    }
+
+    /**
+     * @dataProvider dataProvider_getListOfEmails
+     * @test
+     */
+    public function test_getListOfEmails($emailAddressList, $separator, $emailOnly, $expacted)
+    {
+        $adapter = new MockAbstractAdapter();
+        $result = $this->invokeMethod($adapter, 'getListOfEmails', [$emailAddressList, $separator, $emailOnly]);
+
+        $this->assertEquals($expacted, $result);
+    }
+}

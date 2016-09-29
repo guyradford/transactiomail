@@ -49,14 +49,14 @@ class SendInBlue extends AbstractAdapter
     {
         return [
             "id" => $emailTemplatedMessage->getTemplate(),
-            "to" => $this->getListOfEmails($emailTemplatedMessage->getToEmailAddresses(), '|'),
-            "cc" => $this->getListOfEmails($emailTemplatedMessage->getCcEmailAddresses(), '|'),
-            "bcc" => $this->getListOfEmails($emailTemplatedMessage->getBccEmailAddresses(), '|'),
+            "to" => $this->getListOfEmails($emailTemplatedMessage->getTos(), '|'),
+            "cc" => $this->getListOfEmails($emailTemplatedMessage->getCcs(), '|'),
+            "bcc" => $this->getListOfEmails($emailTemplatedMessage->getBccs(), '|'),
             "attr" => $this->getMergeFields(
                 $emailTemplatedMessage->getMergeFields(),
                 $emailTemplatedMessage->getSubject()
             ),
-            "replyto" => $emailTemplatedMessage->getReplyToEmailAddress()->getEmailAddress(),
+            "replyto" => $emailTemplatedMessage->getReplyTo()->getEmailAddress(),
 //			"attachment_url" => "",
 //			"attachment" => array("myfilename.pdf" => "your_pdf_files_base64_encoded_chunk_data"),
             "headers" => $this->getHeadersAsArray($emailTemplatedMessage),

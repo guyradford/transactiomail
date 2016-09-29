@@ -117,8 +117,8 @@ class Mandrill extends AbstractAdapter
             $this->defaultMessageConfig,
             [
                 'subject' => $emailMessage->getSubject(),
-                'from_email' => $emailMessage->getFromEmailAddress()->getEmailAddress(),
-                'from_name' => $emailMessage->getFromEmailAddress()->getName(),
+                'from_email' => $emailMessage->getFrom()->getEmailAddress(),
+                'from_name' => $emailMessage->getFrom()->getName(),
                 'to' => $this->builtToArray($emailMessage),
                 'headers' => $this->getMandrillHeadersAsArray($emailMessage),
             ]
@@ -128,9 +128,9 @@ class Mandrill extends AbstractAdapter
     protected function builtToArray(EmailTemplatedMessage $emailMessage)
     {
         $to = array_merge(
-            $this->buildToArrayForType('to', $emailMessage->getToEmailAddresses()),
-            $this->buildToArrayForType('cc', $emailMessage->getCcEmailAddresses()),
-            $this->buildToArrayForType('bcc', $emailMessage->getBccEmailAddresses())
+            $this->buildToArrayForType('to', $emailMessage->getTos()),
+            $this->buildToArrayForType('cc', $emailMessage->getCcs()),
+            $this->buildToArrayForType('bcc', $emailMessage->getBccs())
         );
 
         return $to;
@@ -156,8 +156,8 @@ class Mandrill extends AbstractAdapter
     {
         $headers = [];
 
-        if ($emailMessage->getReplyToEmailAddress()) {
-            $headers['Reply-To'] = $emailMessage->getReplyToEmailAddress();
+        if ($emailMessage->getReplyTo()) {
+            $headers['Reply-To'] = $emailMessage->getReplyTo();
         }
 
         $headers = array_merge($headers, $this->getHeadersAsArray($emailMessage));
