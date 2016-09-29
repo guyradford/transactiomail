@@ -9,6 +9,7 @@
          stopOnFailure="false"
          syntaxCheck="true"
          verbose="true"
+         checkForUnintentionallyCoveredCode="true"
 >
     <testsuites>
         <testsuite name="transactiomail/tests">
