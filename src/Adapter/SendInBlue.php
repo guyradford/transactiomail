@@ -26,6 +26,9 @@ class SendInBlue extends AbstractAdapter
         $this->client = $client;
     }
 
+    protected function getClient(){
+        return $this->client;
+    }
 
     /**
      * @param EmailTemplatedMessage $emailMessage
@@ -34,7 +37,7 @@ class SendInBlue extends AbstractAdapter
     public function sendTemplateEmail(EmailTemplatedMessage $emailMessage)
     {
         $message = $this->getMessageData($emailMessage);
-        $result = $this->client->send_transactional_template($message);
+        $result = $this->getClient()->send_transactional_template($message);
         return $this->builtResult($result);
     }
 
@@ -86,7 +89,7 @@ class SendInBlue extends AbstractAdapter
     {
         return Result::create(
             ($result['code'] == 'success'?true:false),
-            $result['data']['message-id'],
+            str_replace(['<', '>'], '', $result['data']['message-id']),
             $result['message']
         );
     }
