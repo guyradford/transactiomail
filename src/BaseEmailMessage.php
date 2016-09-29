@@ -133,7 +133,7 @@ abstract class BaseEmailMessage
     public function setFrom($emailAddress, $name='')
     {
         Assertion::email($emailAddress);
-        $this->replyTo = EmailAddress::create($emailAddress, $name);
+        $this->from = EmailAddress::create($emailAddress, $name);
         return $this;
     }
 
