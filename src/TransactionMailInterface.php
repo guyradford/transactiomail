@@ -6,9 +6,9 @@
  * Time: 21:22
  */
 
-namespace GuyRadford\TransactioMail;
+namespace GuyRadford\TransactionMail;
 
-interface TransactioMailInterface
+interface TransactionMailInterface
 {
     /**
      * @param EmailTemplatedMessage $emailMessage

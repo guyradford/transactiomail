@@ -6,13 +6,13 @@
  * Time: 19:55
  */
 
-namespace GuyRadford\Test\TransactioMail\Unit\Adapter;
+namespace GuyRadford\Test\TransactionMail\Unit\Adapter;
 
-use GuyRadford\TransactioMail\Adapter\SendInBlue;
-use GuyRadford\TransactioMail\EmailTemplatedMessage;
-use GuyRadford\TransactioMail\Result;
+use GuyRadford\TransactionMail\Adapter\SendInBlue;
+use GuyRadford\TransactionMail\EmailTemplatedMessage;
+use GuyRadford\TransactionMail\Result;
 use Sendinblue\Mailin;
-use GuyRadford\Test\TransactioMail\Unit\TestTraits;
+use GuyRadford\Test\TransactionMail\Unit\TestTraits;
 
 class SendInBlueTest extends \PHPUnit_Framework_TestCase
 {

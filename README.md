@@ -1,7 +1,7 @@
-# TransactioMail
+# TransactionMail
 Transactional Email Service
 
-[![Build Status](https://travis-ci.org/guyradford/transactiomail.svg?branch=master)](https://travis-ci.org/guyradford/transactiomail) [![Coverage Status](https://coveralls.io/repos/github/guyradford/transactiomail/badge.svg?branch=master)](https://coveralls.io/github/guyradford/transactiomail?branch=master)
+[![Build Status](https://travis-ci.org/guyradford/TransactionMail.svg?branch=master)](https://travis-ci.org/guyradford/transactionMail) [![Coverage Status](https://coveralls.io/repos/github/guyradford/transactionMail/badge.svg?branch=master)](https://coveralls.io/github/guyradford/transactionMail?branch=master)
 
 ##Feature Table
 
@@ -19,9 +19,9 @@ https://apidocs.sendinblue.com/tutorial-sending-transactional-email/
 ```
 $mailin = new Mailin("https://api.sendinblue.com/v2.0","your access key");
 $adapter = new SendInBlue($mailin);
-$transatioMail = new TransactioMail($adapter);
+$transationMail = new TransactionMail($adapter);
  
-$email = new TemplatedEmailMessage()
+$email = (new EmailTemplatedMessage())
     ->setFromEmailAddress('from@example.co.uk')
     ->setReplyToEmailAddress('replay@example.co.uk')
     ->addToEmailAddress('to@example.com')
@@ -32,7 +32,7 @@ $email = new TemplatedEmailMessage()
     ->addHeader('Content-Type', 'text/html;charset=iso-8859-1');
     
     
-$response = $transatioMail->sendTemplate($email);w
+$response = $transationMail->sendTemplate($email);
  
 ```
 
@@ -51,7 +51,7 @@ https://mandrillapp.com/api/docs/messages.php.html
 ```
 $mandrill = new Mandrill('YOUR_API_KEY');
 $adapter = new SendInBlue($mandrill);
-$transatioMail = new TransactioMail($adapter);
+$transatioMail = new TransactionMail($adapter);
 
 ##Inspired By
 

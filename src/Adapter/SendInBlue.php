@@ -6,10 +6,13 @@
  * Time: 19:49
  */
 
-namespace GuyRadford\TransactioMail\Adapter;
+namespace GuyRadford\TransactionMail\Adapter;
 
-use GuyRadford\TransactioMail\EmailTemplatedMessage;
-use GuyRadford\TransactioMail\Result;
+use GuyRadford\TransactionMail\EmailTemplatedMessage;
+use GuyRadford\TransactionMail\Exception\InvalidApiAuthenticationException;
+use GuyRadford\TransactionMail\Exception\InvalidTemplateIdException;
+use GuyRadford\TransactionMail\Exception\RequiredFieldMissingException;
+use GuyRadford\TransactionMail\Result;
 use Sendinblue\Mailin;
 
 class SendInBlue extends AbstractAdapter
@@ -26,7 +29,8 @@ class SendInBlue extends AbstractAdapter
         $this->client = $client;
     }
 
-    protected function getClient(){
+    protected function getClient()
+    {
         return $this->client;
     }
 
@@ -56,7 +60,7 @@ class SendInBlue extends AbstractAdapter
                 $emailTemplatedMessage->getMergeFields(),
                 $emailTemplatedMessage->getSubject()
             ),
-            "replyto" => $emailTemplatedMessage->getReplyTo()->getEmailAddress(),
+            "replyto" => $this->getEmailOrNull($emailTemplatedMessage->getReplyTo()),
 //			"attachment_url" => "",
 //			"attachment" => array("myfilename.pdf" => "your_pdf_files_base64_encoded_chunk_data"),
             "headers" => $this->getHeadersAsArray($emailTemplatedMessage),
@@ -79,16 +83,32 @@ class SendInBlue extends AbstractAdapter
         array_walk($mergeFields, function ($value, $key) use (&$attr) {
             $attr[strtoupper($key)] = $value;
         });
-        
+
         return $attr;
     }
 
 
-
     protected function builtResult($result)
     {
+
+        if ($result['code'] == 'failure') {
+            switch ($result['message']) {
+                case 'Key Not Found In Database':
+                    throw new InvalidApiAuthenticationException();
+                    break;
+                case 'Invalid template id specified.':
+                    throw new InvalidTemplateIdException();
+                    break;
+                case 'Required field missing':
+                    throw new RequiredFieldMissingException();
+                default:
+                    var_dump($result);
+                    throw new \Exception($result['message']);
+            }
+        }
+
         return Result::create(
-            ($result['code'] == 'success'?true:false),
+            ($result['code'] == 'success' ? true : false),
             str_replace(['<', '>'], '', $result['data']['message-id']),
             $result['message']
         );

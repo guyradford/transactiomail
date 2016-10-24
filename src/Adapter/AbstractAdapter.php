@@ -6,12 +6,12 @@
  * Time: 19:46
  */
 
-namespace GuyRadford\TransactioMail\Adapter;
+namespace GuyRadford\TransactionMail\Adapter;
 
-use GuyRadford\TransactioMail\AdapterInterface;
-use GuyRadford\TransactioMail\BaseEmailMessage;
-use GuyRadford\TransactioMail\Result;
-use GuyRadford\TransactioMail\ValueObject\EmailAddress;
+use GuyRadford\TransactionMail\AdapterInterface;
+use GuyRadford\TransactionMail\BaseEmailMessage;
+use GuyRadford\TransactionMail\Result;
+use GuyRadford\TransactionMail\ValueObject\EmailAddress;
 
 abstract class AbstractAdapter implements AdapterInterface
 {
@@ -66,5 +66,19 @@ abstract class AbstractAdapter implements AdapterInterface
         });
 
         return implode($separator, $emails);
+    }
+
+
+    /**
+     * @param EmailAddress $email
+     * @return null|string
+     */
+    protected function getEmailOrNull($email){
+        if ($email)
+            return $email->getEmailAddress();
+        
+        return null;
+                
+                
     }
 }

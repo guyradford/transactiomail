@@ -6,10 +6,10 @@
  * Time: 19:49
  */
 
-namespace GuyRadford\TransactioMail\Adapter;
+namespace GuyRadford\TransactionMail\Adapter;
 
-use GuyRadford\TransactioMail\EmailTemplatedMessage;
-use GuyRadford\TransactioMail\Result;
+use GuyRadford\TransactionMail\EmailTemplatedMessage;
+use GuyRadford\TransactionMail\Result;
 
 class Void extends AbstractAdapter
 {

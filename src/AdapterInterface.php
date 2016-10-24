@@ -6,7 +6,7 @@
  * Time: 19:44
  */
 
-namespace GuyRadford\TransactioMail;
+namespace GuyRadford\TransactionMail;
 
 interface AdapterInterface
 {

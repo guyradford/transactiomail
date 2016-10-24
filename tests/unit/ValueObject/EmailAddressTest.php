@@ -6,9 +6,9 @@
  * Time: 20:24
  */
 
-namespace GuyRadford\Test\TransactioMail\Unit\ValueObject;
+namespace GuyRadford\Test\TransactionMail\Unit\ValueObject;
 
-use GuyRadford\TransactioMail\ValueObject\EmailAddress;
+use GuyRadford\TransactionMail\ValueObject\EmailAddress;
 
 class EmailAddressTest extends \PHPUnit_Framework_TestCase
 {

@@ -6,7 +6,7 @@
  * Time: 20:08
  */
 
-namespace GuyRadford\TransactioMail\ValueObject;
+namespace GuyRadford\TransactionMail\ValueObject;
 
 use Assert\Assertion;
 

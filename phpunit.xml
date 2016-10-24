@@ -12,7 +12,7 @@
          checkForUnintentionallyCoveredCode="true"
 >
     <testsuites>
-        <testsuite name="transactiomail/tests">
+        <testsuite name="transactionMail/tests">
             <directory suffix=".php">./tests/</directory>
         </testsuite>
     </testsuites>

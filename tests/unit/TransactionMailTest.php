@@ -6,13 +6,13 @@
  * Time: 21:02
  */
 
-namespace GuyRadford\Test\TransactioMail\Unit;
+namespace GuyRadford\Test\TransactionMail\Unit;
 
-use GuyRadford\TransactioMail\Adapter\Void;
-use GuyRadford\TransactioMail\EmailTemplatedMessage;
-use GuyRadford\TransactioMail\TransactioMail;
+use GuyRadford\TransactionMail\Adapter\Void;
+use GuyRadford\TransactionMail\EmailTemplatedMessage;
+use GuyRadford\TransactionMail\TransactionMail;
 
-class TransactioMailTest extends \PHPUnit_Framework_TestCase
+class TransactionMailTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
@@ -22,9 +22,9 @@ class TransactioMailTest extends \PHPUnit_Framework_TestCase
     {
         $adapter = $this->prophesize(Void::class);
 
-        $transactioMail = new TransactioMail($adapter->reveal());
+        $transactionMail = new TransactionMail($adapter->reveal());
 
-        $this->assertTrue(method_exists($transactioMail, 'sendTemplateEmail'));
+        $this->assertTrue(method_exists($transactionMail, 'sendTemplateEmail'));
     }
 
     /**
@@ -38,9 +38,9 @@ class TransactioMailTest extends \PHPUnit_Framework_TestCase
 
         $adapter->sendTemplateEmail($emailMessage)->shouldBeCalledTimes(1)->willReturn(true);
 
-        $transactioMail = new TransactioMail($adapter->reveal());
+        $transactionMail = new TransactionMail($adapter->reveal());
 
-        $result = $transactioMail->sendTemplateEmail($emailMessage);
+        $result = $transactionMail->sendTemplateEmail($emailMessage);
         $this->assertTrue($result);
     }
 }

@@ -6,10 +6,10 @@
  * Time: 19:52
  */
 
-namespace GuyRadford\TransactioMail;
+namespace GuyRadford\TransactionMail;
 
 use Assert\Assertion;
-use GuyRadford\TransactioMail\ValueObject\EmailAddress;
+use GuyRadford\TransactionMail\ValueObject\EmailAddress;
 
 abstract class BaseEmailMessage
 {
@@ -74,7 +74,7 @@ abstract class BaseEmailMessage
     public function addCc($emailAddress, $name='')
     {
         Assertion::email($emailAddress);
-        $this->ccEmailAddresses[$emailAddress] = EmailAddress::create($emailAddress, $name);
+        $this->cc[$emailAddress] = EmailAddress::create($emailAddress, $name);
         return $this;
     }
 
@@ -160,7 +160,7 @@ abstract class BaseEmailMessage
      */
     public function getCcs()
     {
-        return $this->ccEmailAddresses;
+        return $this->cc;
     }
 
     /**

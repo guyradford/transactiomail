@@ -6,11 +6,11 @@
  * Time: 19:33
  */
 
-namespace GuyRadford\Test\TransactioMail\Unit\Adapter;
+namespace GuyRadford\Test\TransactionMail\Unit\Adapter;
 
-use GuyRadford\TransactioMail\EmailTemplatedMessage;
-use GuyRadford\TransactioMail\ValueObject\EmailAddress;
-use GuyRadford\Test\TransactioMail\Unit\TestTraits;
+use GuyRadford\TransactionMail\EmailTemplatedMessage;
+use GuyRadford\TransactionMail\ValueObject\EmailAddress;
+use GuyRadford\Test\TransactionMail\Unit\TestTraits;
 
 class AbstractAdapterTest extends \PHPUnit_Framework_TestCase
 {

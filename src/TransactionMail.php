@@ -6,9 +6,9 @@
  * Time: 21:18
  */
 
-namespace GuyRadford\TransactioMail;
+namespace GuyRadford\TransactionMail;
 
-class TransactioMail implements TransactioMailInterface
+class TransactionMail implements TransactionMailInterface
 {
     /**
      * @var AdapterInterface
@@ -17,7 +17,7 @@ class TransactioMail implements TransactioMailInterface
 
 
     /**
-     * TransactioMail constructor.
+     * TransactionMail constructor.
      * @param AdapterInterface $adapter
      */
     public function __construct(AdapterInterface $adapter)

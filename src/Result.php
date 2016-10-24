@@ -6,7 +6,7 @@
  * Time: 20:59
  */
 
-namespace GuyRadford\TransactioMail;
+namespace GuyRadford\TransactionMail;
 
 use Assert\Assertion;
 

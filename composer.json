@@ -1,5 +1,5 @@
 {
-    "name": "guyradford/transactiomail",
+    "name": "guyradford/transactionmail",
     "description": "Transaction Email.",
     "keywords": [
         "email", "transactional"
@@ -12,8 +12,9 @@
         }
     ],
     "require": {
-        "php": ">=5.4.0",
-        "beberlei/assert": "^2.6"
+        "php": ">=5.5.0",
+        "beberlei/assert": "^2.6",
+        "php-imap/php-imap": "~2.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^4.8",
@@ -22,12 +23,13 @@
         "mailin-api/mailin-api-php": "^1.0",
         "mandrill/mandrill": "^1.0",
         "friendsofphp/php-cs-fixer": "^1.12",
-        "satooshi/php-coveralls": "^1.0"
+        "satooshi/php-coveralls": "^1.0",
+        "contextio/php-contextio": "dev-master"
     },
     "autoload": {
         "psr-4": {
-            "GuyRadford\\TransactioMail\\": "src/",
-            "GuyRadford\\Test\\TransactioMail\\": "tests/"
+            "GuyRadford\\TransactionMail\\": "src/",
+            "GuyRadford\\Test\\TransactionMail\\": "tests/"
         }
     }
 }

@@ -6,11 +6,11 @@
  * Time: 20:38
  */
 
-namespace GuyRadford\Test\TransactioMail\Unit\Adapter;
+namespace GuyRadford\Test\TransactionMail\Unit\Adapter;
 
-use GuyRadford\TransactioMail\Adapter\AbstractAdapter;
-use GuyRadford\TransactioMail\EmailTemplatedMessage;
-use GuyRadford\TransactioMail\Result;
+use GuyRadford\TransactionMail\Adapter\AbstractAdapter;
+use GuyRadford\TransactionMail\EmailTemplatedMessage;
+use GuyRadford\TransactionMail\Result;
 
 class MockAbstractAdapter extends AbstractAdapter
 {

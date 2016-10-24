@@ -6,7 +6,7 @@
  * Time: 20:55
  */
 
-namespace GuyRadford\Test\TransactioMail\Unit;
+namespace GuyRadford\Test\TransactionMail\Unit;
 
 trait TestTraits
 {

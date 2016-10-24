@@ -6,11 +6,11 @@
  * Time: 19:55
  */
 
-namespace GuyRadford\Test\TransactioMail\Unit\Adapter;
+namespace GuyRadford\Test\TransactionMail\Unit\Adapter;
 
-use GuyRadford\TransactioMail\Adapter\Void;
-use GuyRadford\TransactioMail\EmailTemplatedMessage;
-use GuyRadford\TransactioMail\Result;
+use GuyRadford\TransactionMail\Adapter\Void;
+use GuyRadford\TransactionMail\EmailTemplatedMessage;
+use GuyRadford\TransactionMail\Result;
 
 class VoidTest extends \PHPUnit_Framework_TestCase
 {

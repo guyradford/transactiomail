@@ -1,0 +1,16 @@
+{% block subject %}{{ subject }} for testing.{% endblock %}
+
+{% block html_email %}
+    <body style="margin:0; padding:0;"><div>
+        Dear {{ name }},</div>
+    <div>
+        <br />
+        This is a test email.</div>
+    </body>
+{% endblock %}
+
+{% block text_email %}
+    Dear {{ name }},
+
+    This is a test email.
+{% endblock %}
